@@ -582,7 +582,7 @@
       link.addEventListener("click", function(event) {
         event.preventDefault();
 
-        if (!/^\\d{10,15}$/.test(WHATSAPP_NUMBER)) {
+        if (!/^\d{10,15}$/.test(WHATSAPP_NUMBER)) {
           alert("La página está casi lista. Falta configurar el número de WhatsApp.");
           document.getElementById("contacto").scrollIntoView();
           return;
