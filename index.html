@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050914">
+  <meta name="description" content="MasterOficial: catálogo digital, packs y atención personalizada.">
+  <title>MasterOficial | Catálogo Digital</title>
+
+  <style>
+    :root {
+      --bg: #050914;
+      --panel: #0b1426;
+      --blue: #168cff;
+      --cyan: #36d5ff;
+      --white: #f4f8ff;
+      --muted: #a7b5cc;
+      --border: #193b60;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(5, 9, 20, .94);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      padding: 12px 0;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: -.8px;
+    }
+
+    .logo span { color: var(--cyan); }
+
+    .navlinks {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .navlinks a:hover { color: var(--cyan); }
+
+    .hero {
+      padding: 85px 0 70px;
+      background:
+        radial-gradient(ellipse at 85% 25%, #0754a53d, transparent 45%),
+        radial-gradient(ellipse at 15% 90%, #0077ff14, transparent 45%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      align-items: center;
+      gap: 45px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--cyan);
+      border: 1px solid #168cff60;
+      background: #168cff12;
+      border-radius: 30px;
+      padding: 5px 13px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: clamp(38px, 6vw, 66px);
+      line-height: 1.06;
+      letter-spacing: -2px;
+      margin: 22px 0;
+    }
+
+    h1 span {
+      color: var(--cyan);
+    }
+
+    .intro {
+      color: var(--muted);
+      max-width: 570px;
+      font-size: 17px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 19px;
+      border: 1px solid var(--blue);
+      border-radius: 9px;
+      background: linear-gradient(135deg, #168cff, #0758c9);
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 24px #168cff35;
+    }
+
+    .btn.secondary { background: transparent; }
+
+    .hero-card {
+      padding: 28px;
+      border: 1px solid #168cff65;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #10213b, #080e1c);
+      box-shadow: 0 0 55px #007bff16;
+    }
+
+    .hero-symbol {
+      font-size: 65px;
+      text-align: center;
+      color: var(--cyan);
+      text-shadow: 0 0 35px #168cff90;
+      line-height: 1.4;
+    }
+
+    .hero-card h3 { text-align: center; }
+
+    .hero-card p {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .trust {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .trust div {
+      border: 1px solid var(--border);
+      padding: 13px;
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .trust strong {
+      display: block;
+      color: white;
+      font-size: 13px;
+    }
+
+    section { padding: 65px 0; }
+
+    .section-head { margin-bottom: 28px; }
+
+    .section-head h2 {
+      font-size: clamp(27px, 4vw, 37px);
+      margin: 0 0 6px;
+      letter-spacing: -.8px;
+    }
+
+    .section-head p { color: var(--muted); margin: 0; }
+
+    .categories, .packs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: linear-gradient(150deg, #0d192d, #080e1b);
+      border-radius: 14px;
+      padding: 23px;
+      transition: .2s;
+    }
+
+    .card:hover {
+      border-color: var(--blue);
+      transform: translateY(-3px);
+    }
+
+    .category-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #168cff16;
+      border: 1px solid #168cff50;
+      font-size: 24px;
+    }
+
+    .card h3 { margin: 15px 0 8px; }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .card .btn {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .featured {
+      border-color: var(--blue);
+      box-shadow: 0 0 25px #168cff18;
+    }
+
+    .tag {
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .price {
+      font-size: 29px;
+      font-weight: 900;
+      margin: 15px 0 5px;
+      color: var(--white);
+    }
+
+    .price small {
+      display: block;
+      font-size: 11px;
+      font-weight: normal;
+      color: var(--muted);
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .benefit {
+      border-top: 2px solid var(--blue);
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .benefit strong { display: block; }
+    .benefit span { font-size: 13px; color: var(--muted); }
+
+    .faq-list {
+      display: grid;
+      gap: 10px;
+      max-width: 850px;
+    }
+
+    details {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 17px 19px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    details p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .contact-box {
+      text-align: center;
+      padding: 40px 20px;
+      border: 1px solid var(--blue);
+      border-radius: 18px;
+      background: radial-gradient(ellipse at top, #0754a533, #0b1426 75%);
+    }
+
+    .contact-box h2 { margin-top: 0; }
+
+    .contact-box p { color: var(--muted); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 20;
+      background: #20c86a;
+      color: #04140a;
+      border-radius: 50px;
+      padding: 13px 18px;
+      font-weight: 900;
+      box-shadow: 0 5px 25px #20c86a40;
+    }
+
+    @media (max-width: 760px) {
+      .hero { padding: 55px 0; }
+      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+      .categories, .packs { grid-template-columns: 1fr; }
+      .benefits { grid-template-columns: repeat(2, 1fr); }
+      .trust { grid-template-columns: 1fr; }
+      .navlinks { gap: 12px; font-size: 12px; }
+      .logo { font-size: 21px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- CONFIGURACIÓN: reemplazá el número de WhatsApp al final del archivo -->
+
+  <header>
+    <div class="container">
+      <nav>
+        <a class="logo" href="#inicio">MASTER<span>OFICIAL</span></a>
+        <div class="navlinks">
+          <a href="#inicio">Inicio</a>
+          <a href="#catalogo">Catálogo</a>
+          <a href="#packs">Packs</a>
+          <a href="#faq">Preguntas frecuentes</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">CATÁLOGO DIGITAL</span>
+          <h1>Todo lo que buscás.<br><span>En un solo lugar.</span></h1>
+          <p class="intro">
+            Descubrí nuestros productos digitales, packs y promociones.
+            Consultá el catálogo y recibí atención personalizada.
+          </p>
+          <div class="actions">
+            <a class="btn wa-link" href="#contacto">Consultar por WhatsApp ↗️</a>
+            <a class="btn secondary" href="#packs">Ver los packs</a>
+          </div>
+          <div class="trust">
+            <div><strong>Atención personal</strong>Consultas directas</div>
+            <div><strong>Información clara</strong>Detalles de cada pack</div>
+            <div><strong>Soporte</strong>Ayuda según el producto</div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-symbol">M<span>✦</span></div>
+          <h3>Bienvenido a MasterOficial</h3>
+          <p>Tu próximo producto digital empieza acá.</p>
+          <a class="btn wa-link" href="#contacto">Quiero más información</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalogo">
+      <div class="container">
+        <div class="section-head">
+          <h2>Explorá el catálogo</h2>
+          <p>Elegí una categoría y consultá las opciones disponibles.</p>
+        </div>
+
+        <div class="categories">
+          <article class="card">
+            <div class="category-icon">🎮</div>
+            <h3>Videojuegos</h3>
+            <p>Opciones y colecciones para distintas plataformas.</p>
+            <a class="btn secondary wa-link" href="#contacto"
+              data-message="Hola, quiero consultar por videojuegos.">
+              Consultar catálogo
+            </a>
+          </article>
+
+          <article class="card">
+            <div class="category-icon">🕹️</div>
+            <h3>Productos retro</h3>
+            <p>Descubrí opciones clásicas y packs especiales.</p>
+            <a class="btn secondary wa-link" href="#contacto"
+              data-message="Hola, quiero consultar por productos retro.">
+              Ver opciones
+            </a>
+          </article>
+
+          <article class="card">
+            <div class="category-icon">💎</div>
+            <h3>Productos digitales</h3>
+            <p>Consultá disponibilidad, características y precios.</p>
+            <a class="btn secondary wa-link" href="#contacto"
+              data-message="Hola, quiero conocer los productos digitales disponibles.">
+              Más información
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="packs">
+      <div class="container">
+        <div class="section-head">
+          <h2>Packs disponibles</h2>
+          <p>Conocé las opciones y consultá qué incluye cada una.</p>
+        </div>
+
+        <div class="packs">
+          <article class="card">
+            <span class="tag">PACK 01</span>
+            <h3>Pack Inicial</h3>
+            <p>Una opción para comenzar. Consultá contenido y compatibilidad.</p>
+            <div class="price">Consultar<small>Precio actualizado por WhatsApp</small></div>
+            <a class="btn secondary wa-link" href="#contacto"
+              data-message="Hola, quiero conocer el contenido y precio del Pack Inicial.">
+              Ver detalles
+            </a>
+          </article>
+
+          <article class="card featured">
+            <span class="tag">★ PACK DESTACADO</span>
+            <h3>Pack Completo</h3>
+            <p>Una alternativa con más opciones. Consultá todo lo que incluye.</p>
+            <div class="price">Consultar<small>Precio actualizado por WhatsApp</small></div>
+            <a class="btn wa-link" href="#contacto"
+              data-message="Hola, quiero conocer el contenido y precio del Pack Completo.">
+              Consultar pack
+            </a>
+          </article>
+
+          <article class="card">
+            <span class="tag">PACK 03</span>
+            <h3>Pack Premium</h3>
+            <p>Consultá las características y opciones de esta alternativa.</p>
+            <div class="price">Consultar<small>Precio actualizado por WhatsApp</small></div>
+            <a class="btn secondary wa-link" href="#contacto"
+              data-message="Hola, quiero conocer el contenido y precio del Pack Premium.">
+              Ver detalles
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ventajas">
+      <div class="container">
+        <div class="section-head">
+          <h2>¿Por qué elegirnos?</h2>
+          <p>Información clara y atención durante tu consulta.</p>
+        </div>
+        <div class="benefits">
+          <div class="benefit"><strong>01 · Atención</strong><span>Asesoramiento personalizado.</span></div>
+          <div class="benefit"><strong>02 · Claridad</strong><span>Detalles antes de comprar.</span></div>
+          <div class="benefit"><strong>03 · Compatibilidad</strong><span>Consultá antes de elegir.</span></div>
+          <div class="benefit"><strong>04 · Soporte</strong><span>Canal directo de consultas.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <h2>Preguntas frecuentes</h2>
+          <p>Resolvemos las dudas más comunes.</p>
+        </div>
+
+        <div class="faq-list">
+          <details>
+            <summary>¿Cómo consulto los precios?</summary>
+            <p>Escribinos por WhatsApp y te informaremos los precios vigentes y las opciones disponibles.</p>
+          </details>
+          <details>
+            <summary>¿Qué incluye cada pack?</summary>
+            <p>El contenido depende de cada pack. Solicitá el detalle completo antes de realizar tu compra.</p>
+          </details>
+          <details>
+            <summary>¿Cómo sé si es compatible con mi equipo?</summary>
+            <p>Indicá qué dispositivo o plataforma utilizás para verificar las opciones compatibles.</p>
+          </details>
+          <details>
+            <summary>¿Qué medios de pago aceptan?</summary>
+            <p>Consultanos por WhatsApp para conocer los medios de pago disponibles.</p>
+          </details>
+          <details>
+            <summary>¿Cómo recibo mi producto?</summary>
+            <p>La entrega depende del producto adquirido. Consultá el procedimiento y los plazos antes de pagar.</p>
+          </details>
+          <details>
+            <summary>¿Puedo hacer otras preguntas antes de comprar?</summary>
+            <p>Sí. Podés escribirnos para resolver tus dudas antes de tomar una decisión.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <div class="contact-box">
+          <span class="eyebrow">CONTACTO DIRECTO</span>
+          <h2>¿Buscás algo en particular?</h2>
+          <p>Escribinos y te ayudamos a encontrar la opción adecuada.</p>
+          <a class="btn wa-link" href="#contacto"
+            data-message="Hola, llegué desde la web de MasterOficial y quiero recibir información sobre los packs disponibles.">
+            ☎️ Consultar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <a class="logo" href="#inicio">MASTER<span>OFICIAL</span></a>
+      <p>Catálogo digital · Productos · Packs</p>
+      <p>© <span id="year"></span> MasterOficial. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float wa-link" href="#contacto"
+     aria-label="Consultar por WhatsApp">WhatsApp ↗️</a>
+
+  <script>
+    // REEMPLAZÁ este valor por tu número con código de país,
+    // sin el signo +, espacios ni guiones.
+    // Ejemplo de formato argentino: 54911XXXXXXXX
+    const WHATSAPP_NUMBER = "54911XXXXXXXX";
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    document.querySelectorAll(".wa-link").forEach(function(link) {
+      link.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        if (!/^\\d{10,15}$/.test(WHATSAPP_NUMBER)) {
+          alert("La página está casi lista. Falta configurar el número de WhatsApp.");
+          document.getElementById("contacto").scrollIntoView();
+          return;
+        }
+
+        const message = link.dataset.message ||
+          "Hola, llegué desde la web de MasterOficial y quiero conocer los packs disponibles.";
+
+        const url = "https://wa.me/" + WHATSAPP_NUMBER +
+          "?text=" + encodeURIComponent(message);
+
+        window.open(url, "_blank", "noopener,noreferrer");
+      });
+    });
+  </script>
+</body>
+</html>
