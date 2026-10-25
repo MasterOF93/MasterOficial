@@ -4,374 +4,223 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#050914">
-  <meta name="description" content="MasterOficial: catálogo digital, packs y atención personalizada.">
-  <title>MasterOficial | SOMOS META VERIFICADO </title>
-
+  <meta name="description" content="MasterOficial: catálogo digital, packs para PlayStation y atención personalizada.">
+  <title>MasterOficial | Gaming Premium</title>
   <style>
     :root {
       --bg: #050914;
-      --panel: #0b1426;
+      --panel: rgba(11, 20, 38, .82);
       --blue: #168cff;
       --cyan: #36d5ff;
       --white: #f4f8ff;
       --muted: #a7b5cc;
-      --border: #193b60;
+      --border: rgba(54, 150, 255, .24);
+      --glow: rgba(22, 140, 255, .2);
     }
-
     * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
+    html { scroll-behavior: smooth; scroll-padding-top: 95px; }
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--white);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
+      margin: 0; overflow-x: hidden; background: var(--bg); color: var(--white);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
     }
-
-    a { color: inherit; text-decoration: none; }
-
-    button, a { -webkit-tap-highlight-color: transparent; }
-
-    .container {
-      width: min(1120px, 92%);
-      margin: auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(5, 9, 20, .94);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-
-    nav {
-      min-height: 76px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      padding: 12px 0;
-    }
-
-    .logo {
-      font-size: 23px;
-      font-weight: 900;
-      letter-spacing: -.8px;
-    }
-
-    .logo span { color: var(--cyan); }
-
-    .navlinks {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .navlinks a:hover { color: var(--cyan); }
-
-    .hero {
-      padding: 85px 0 70px;
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -3; pointer-events: none;
       background:
-        radial-gradient(ellipse at 85% 25%, #0754a53d, transparent 45%),
-        radial-gradient(ellipse at 15% 90%, #0077ff14, transparent 45%);
+        radial-gradient(ellipse at 12% 12%, rgba(0, 116, 255, .17), transparent 34%),
+        radial-gradient(ellipse at 88% 30%, rgba(0, 213, 255, .09), transparent 31%),
+        radial-gradient(ellipse at 48% 95%, rgba(0, 73, 190, .13), transparent 40%),
+        #050914;
     }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.3fr .7fr;
-      align-items: center;
-      gap: 45px;
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button, input { font: inherit; }
+    .container { width: min(1160px, 92%); margin: auto; }
+    #wave-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; opacity: .55; }
+    .floating-symbols { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+    .symbol {
+      position: absolute; color: rgba(54, 213, 255, .14); font-weight: 800;
+      text-shadow: 0 0 24px rgba(22, 140, 255, .24);
+      animation: drift 18s ease-in-out infinite alternate;
+      user-select: none;
     }
-
+    .symbol:nth-child(1) { left: 7%; top: 18%; font-size: 48px; animation-duration: 20s; }
+    .symbol:nth-child(2) { left: 83%; top: 15%; font-size: 58px; animation-duration: 24s; animation-delay: -4s; }
+    .symbol:nth-child(3) { left: 88%; top: 61%; font-size: 42px; animation-duration: 17s; animation-delay: -8s; }
+    .symbol:nth-child(4) { left: 12%; top: 72%; font-size: 54px; animation-duration: 22s; animation-delay: -6s; }
+    .symbol:nth-child(5) { left: 47%; top: 8%; font-size: 30px; animation-duration: 19s; animation-delay: -9s; }
+    .symbol:nth-child(6) { left: 66%; top: 82%; font-size: 38px; animation-duration: 23s; animation-delay: -3s; }
+    @keyframes drift { from { transform: translate3d(0, -12px, 0) rotate(-12deg); } to { transform: translate3d(18px, 28px, 0) rotate(16deg); } }
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(5, 9, 20, .82); border-bottom: 1px solid rgba(54, 150, 255, .18);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    }
+    nav { min-height: 76px; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 12px 0; }
+    .logo { font-size: 23px; font-weight: 950; letter-spacing: -1px; white-space: nowrap; }
+    .logo span { color: var(--cyan); text-shadow: 0 0 22px rgba(54,213,255,.3); }
+    .navlinks { display: flex; gap: 20px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+    .navlinks a { transition: color .2s; }
+    .navlinks a:hover { color: var(--cyan); }
+    .hero { position: relative; padding: 88px 0 66px; }
+    .hero::before {
+      content: ""; position: absolute; width: 500px; height: 400px; right: -120px; top: 0;
+      background: radial-gradient(ellipse, rgba(22,140,255,.15), transparent 68%); filter: blur(8px); pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 46px; position: relative; }
     .eyebrow {
-      display: inline-block;
-      color: var(--cyan);
-      border: 1px solid #168cff60;
-      background: #168cff12;
-      border-radius: 30px;
-      padding: 5px 13px;
-      font-size: 12px;
-      letter-spacing: 1px;
-      font-weight: bold;
+      display: inline-flex; align-items: center; gap: 8px; color: var(--cyan);
+      border: 1px solid rgba(22,140,255,.4); background: rgba(22,140,255,.09);
+      border-radius: 999px; padding: 7px 14px; font-size: 11px; letter-spacing: 1.1px; font-weight: 800;
     }
-
-    h1 {
-      font-size: clamp(38px, 6vw, 66px);
-      line-height: 1.06;
-      letter-spacing: -2px;
-      margin: 22px 0;
-    }
-
-    h1 span {
-      color: var(--cyan);
-    }
-
-    .intro {
-      color: var(--muted);
-      max-width: 570px;
-      font-size: 17px;
-    }
-
-    .actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 28px;
-    }
-
+    .eyebrow::before { content: ""; width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; box-shadow: 0 0 12px var(--cyan); }
+    h1 { font-size: clamp(38px, 5.7vw, 68px); line-height: 1.04; letter-spacing: -2.6px; margin: 23px 0 20px; }
+    h1 span, .gradient-text { color: var(--cyan); background: linear-gradient(100deg, #fff 0%, #55ddff 42%, #168cff 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .intro { color: var(--muted); max-width: 630px; font-size: 16px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
     .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 19px;
-      border: 1px solid var(--blue);
-      border-radius: 9px;
-      background: linear-gradient(135deg, #168cff, #0758c9);
-      color: white;
-      font-weight: bold;
-      font-size: 14px;
-      cursor: pointer;
-      transition: .2s;
+      display: inline-flex; justify-content: center; align-items: center; gap: 9px;
+      padding: 13px 19px; border: 1px solid var(--blue); border-radius: 10px;
+      background: linear-gradient(135deg, #168cff, #0758c9); color: white; font-weight: 800;
+      font-size: 13px; cursor: pointer; transition: transform .22s, box-shadow .22s, border-color .22s;
+      box-shadow: 0 8px 26px rgba(22,140,255,.14);
     }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 24px #168cff35;
-    }
-
-    .btn.secondary { background: transparent; }
-
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(22,140,255,.28); }
+    .btn.secondary { background: rgba(8,17,33,.72); border-color: rgba(54,213,255,.3); box-shadow: none; }
+    .btn.secondary:hover { border-color: var(--cyan); }
     .hero-card {
-      padding: 28px;
-      border: 1px solid #168cff65;
-      border-radius: 18px;
-      background: linear-gradient(145deg, #10213b, #080e1c);
-      box-shadow: 0 0 55px #007bff16;
+      position: relative; overflow: hidden; padding: 32px; border: 1px solid rgba(54,213,255,.35);
+      border-radius: 24px; background: linear-gradient(145deg, rgba(16,33,59,.92), rgba(5,10,23,.91));
+      box-shadow: 0 24px 80px rgba(0,0,0,.25), 0 0 55px rgba(0,123,255,.1);
     }
-
-    .hero-symbol {
-      font-size: 65px;
-      text-align: center;
-      color: var(--cyan);
-      text-shadow: 0 0 35px #168cff90;
-      line-height: 1.4;
-    }
-
-    .hero-card h3 { text-align: center; }
-
-    .hero-card p {
-      text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .trust {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .trust div {
-      border: 1px solid var(--border);
-      padding: 13px;
-      border-radius: 10px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .trust strong {
-      display: block;
-      color: white;
-      font-size: 13px;
-    }
-
-    section { padding: 65px 0; }
-
+    .hero-card::before { content: ""; position: absolute; width: 240px; height: 240px; border-radius: 50%; right: -80px; top: -100px; background: rgba(22,140,255,.16); filter: blur(20px); }
+    .console-art { position: relative; display: grid; place-items: center; min-height: 205px; }
+    .console-ring { position: absolute; width: 190px; height: 190px; border: 1px solid rgba(54,213,255,.23); border-radius: 50%; box-shadow: 0 0 45px rgba(22,140,255,.12), inset 0 0 35px rgba(22,140,255,.06); animation: ring 16s linear infinite; }
+    .console-ring::before, .console-ring::after { content: ""; position: absolute; border: 1px dashed rgba(54,213,255,.3); border-radius: 50%; inset: 18px; }
+    .console-ring::after { inset: 39px; border-style: solid; opacity: .6; }
+    @keyframes ring { to { transform: rotate(360deg); } }
+    .controller { font-size: clamp(82px, 9vw, 112px); filter: drop-shadow(0 0 24px rgba(22,140,255,.6)); animation: controller-float 4s ease-in-out infinite; }
+    @keyframes controller-float { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-10px) rotate(4deg); } }
+    .hero-card h2 { text-align: center; font-size: 21px; margin: 12px 0 4px; }
+    .hero-card p { text-align: center; color: var(--muted); font-size: 13px; margin: 0; }
+    .mini-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: 24px; }
+    .mini-stat { padding: 12px 7px; border: 1px solid rgba(54,213,255,.14); border-radius: 10px; text-align: center; background: rgba(3,9,20,.38); }
+    .mini-stat strong { display: block; font-size: 17px; color: var(--cyan); }
+    .mini-stat span { display: block; font-size: 10px; color: var(--muted); }
+    .trust { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 30px; }
+    .trust div { border: 1px solid var(--border); padding: 13px; border-radius: 12px; color: var(--muted); font-size: 11px; background: rgba(8,17,33,.58); }
+    .trust strong { display: block; color: white; font-size: 12px; margin-bottom: 3px; }
+    section.content-section { padding: 70px 0; position: relative; }
     .section-head { margin-bottom: 28px; }
-
-    .section-head h2 {
-      font-size: clamp(27px, 4vw, 37px);
-      margin: 0 0 6px;
-      letter-spacing: -.8px;
-    }
-
-    .section-head p { color: var(--muted); margin: 0; }
-
-    .categories, .packs {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
+    .section-kicker { color: var(--cyan); text-transform: uppercase; letter-spacing: 2px; font-size: 10px; font-weight: 900; }
+    .section-head h2 { font-size: clamp(27px, 4vw, 39px); line-height: 1.15; margin: 6px 0 9px; letter-spacing: -1.1px; }
+    .section-head p { color: var(--muted); margin: 0; font-size: 14px; }
+    .categories, .packs { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
     .card {
-      border: 1px solid var(--border);
-      background: linear-gradient(150deg, #0d192d, #080e1b);
-      border-radius: 14px;
-      padding: 23px;
-      transition: .2s;
+      position: relative; overflow: hidden; border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(13,25,45,.88), rgba(6,12,25,.9));
+      border-radius: 17px; padding: 24px; transition: transform .25s, border-color .25s, box-shadow .25s;
     }
-
-    .card:hover {
-      border-color: var(--blue);
-      transform: translateY(-3px);
+    .card::before { content: ""; position: absolute; inset: 0 auto auto 0; height: 1px; width: 100%; background: linear-gradient(90deg, transparent, rgba(54,213,255,.55), transparent); opacity: .5; }
+    .card:hover { border-color: rgba(54,213,255,.55); transform: translateY(-5px); box-shadow: 0 18px 45px rgba(0,0,0,.18), 0 0 28px rgba(22,140,255,.08); }
+    .category-icon { display: inline-grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; background: rgba(22,140,255,.1); border: 1px solid rgba(22,140,255,.32); font-size: 25px; box-shadow: inset 0 0 20px rgba(22,140,255,.05); }
+    .card h3 { margin: 15px 0 8px; font-size: 19px; }
+    .card p { color: var(--muted); font-size: 13px; }
+    .card .btn { width: 100%; margin-top: 12px; }
+    .tag { display: inline-block; color: var(--cyan); font-size: 10px; font-weight: 900; letter-spacing: 1.3px; }
+    .featured { border-color: rgba(54,213,255,.65); box-shadow: 0 0 35px rgba(22,140,255,.12); background: linear-gradient(145deg, rgba(14,40,70,.95), rgba(6,12,25,.94)); }
+    .featured::after { content: "★"; position: absolute; right: 20px; top: 17px; color: rgba(54,213,255,.28); font-size: 22px; }
+    .price { font-size: clamp(28px,3vw,34px); font-weight: 950; letter-spacing: -.8px; margin: 16px 0 4px; }
+    .price small { display: block; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; color: var(--muted); }
+    .pack-note { color: var(--cyan); font-size: 11px; margin-top: 9px; }
+    .benefits { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    .benefit { border: 1px solid var(--border); background: rgba(11,20,38,.75); border-radius: 13px; padding: 20px; transition: border-color .2s, transform .2s; }
+    .benefit:hover { border-color: rgba(54,213,255,.45); transform: translateY(-3px); }
+    .benefit-icon { font-size: 22px; display: block; margin-bottom: 9px; }
+    .benefit strong { display: block; font-size: 13px; margin-bottom: 5px; }
+    .benefit span { font-size: 12px; color: var(--muted); }
+    .faq-list { display: grid; gap: 10px; max-width: 900px; }
+    details { background: rgba(11,20,38,.78); border: 1px solid var(--border); border-radius: 12px; padding: 17px 19px; transition: border-color .2s; }
+    details[open] { border-color: rgba(54,213,255,.45); }
+    summary { cursor: pointer; font-weight: 750; font-size: 14px; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--cyan); font-size: 22px; line-height: 1; }
+    details[open] summary::after { content: "−"; }
+    details p { color: var(--muted); font-size: 13px; margin: 12px 0 0; }
+    .video-publicitario { max-width: 880px; margin: 0 auto; padding: 30px; border: 1px solid rgba(22,140,255,.45); border-radius: 22px; text-align: center; background: linear-gradient(145deg, rgba(10,23,43,.95), rgba(5,10,22,.92)); box-shadow: 0 18px 60px rgba(0,0,0,.18); position: relative; overflow: hidden; }
+    .video-publicitario::before { content: ""; position: absolute; width: 260px; height: 260px; top: -170px; left: calc(50% - 130px); background: rgba(22,140,255,.2); filter: blur(35px); pointer-events: none; }
+    .video-etiqueta { color: var(--cyan); font-size: 10px; font-weight: 900; letter-spacing: 3px; position: relative; }
+    .video-publicitario h2 { font-size: clamp(24px,4vw,35px); margin: 9px 0; position: relative; }
+    .video-publicitario p { color: var(--muted); font-size: 13px; margin: 0 0 20px; position: relative; }
+    .video-publicitario video { display: block; width: 100%; max-height: 510px; background: #000; border-radius: 14px; border: 1px solid rgba(54,213,255,.2); position: relative; }
+    .video-whatsapp { margin-top: 20px; width: auto !important; }
+    .contact-box { text-align: center; padding: 38px; border: 1px solid rgba(22,140,255,.45); border-radius: 22px; background: radial-gradient(ellipse at top, rgba(7,84,165,.2), transparent 60%), rgba(11,20,38,.78); }
+    .contact-box h2 { margin: 12px 0 8px; font-size: clamp(25px,4vw,36px); }
+    .contact-box > p { color: var(--muted); max-width: 690px; margin: 0 auto 25px; font-size: 14px; }
+    .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; margin: 25px 0; text-align: left; }
+    .team-card { border: 1px solid var(--border); background: rgba(4,11,23,.55); border-radius: 13px; padding: 17px; }
+    .team-flag { font-size: 22px; }
+    .team-card h3 { margin: 7px 0 0; font-size: 16px; }
+    .team-card p { color: var(--muted); margin: 0 0 8px; font-size: 12px; }
+    .team-countries { color: var(--cyan); font-size: 10px; }
+    footer { border-top: 1px solid var(--border); padding: 30px 0 90px; color: var(--muted); font-size: 12px; text-align: center; background: rgba(4,8,17,.45); }
+    footer .logo { display: inline-block; }
+    .whatsapp-float { position: fixed; right: 18px; bottom: 18px; z-index: 60; background: #20c86a; color: #04140a; border-radius: 999px; padding: 13px 17px; font-size: 13px; font-weight: 900; box-shadow: 0 5px 25px rgba(32,200,106,.28); transition: transform .2s; }
+    .whatsapp-float:hover { transform: translateY(-3px); }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 850px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+      .hero-card { max-width: 600px; width: 100%; margin: auto; }
+      .benefits { grid-template-columns: repeat(2,1fr); }
+      .navlinks { gap: 13px; }
     }
-
-    .category-icon {
-      display: inline-grid;
-      place-items: center;
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: #168cff16;
-      border: 1px solid #168cff50;
-      font-size: 24px;
-    }
-
-    .card h3 { margin: 15px 0 8px; }
-
-    .card p {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .card .btn {
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    .featured {
-      border-color: var(--blue);
-      box-shadow: 0 0 25px #168cff18;
-    }
-
-    .tag {
-      color: var(--cyan);
-      font-size: 11px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-    .price {
-      font-size: 29px;
-      font-weight: 900;
-      margin: 15px 0 5px;
-      color: var(--white);
-    }
-
-    .price small {
-      display: block;
-      font-size: 11px;
-      font-weight: normal;
-      color: var(--muted);
-    }
-
-    .benefits {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-
-    .benefit {
-      border-top: 2px solid var(--blue);
-      background: var(--panel);
-      border-radius: 8px;
-      padding: 18px;
-    }
-
-    .benefit strong { display: block; }
-    .benefit span { font-size: 13px; color: var(--muted); }
-
-    .faq-list {
-      display: grid;
-      gap: 10px;
-      max-width: 850px;
-    }
-
-    details {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 17px 19px;
-    }
-
-    summary {
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    details p {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 0;
-    }
-
-    .contact-box {
-      text-align: center;
-      padding: 40px 20px;
-      border: 1px solid var(--blue);
-      border-radius: 18px;
-      background: radial-gradient(ellipse at top, #0754a533, #0b1426 75%);
-    }
-
-    .contact-box h2 { margin-top: 0; }
-
-    .contact-box p { color: var(--muted); }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 28px 0;
-      color: var(--muted);
-      font-size: 12px;
-      text-align: center;
-    }
-
-    .whatsapp-float {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      z-index: 20;
-      background: #20c86a;
-      color: #04140a;
-      border-radius: 50px;
-      padding: 13px 18px;
-      font-weight: 900;
-      box-shadow: 0 5px 25px #20c86a40;
-    }
-
-    @media (max-width: 760px) {
-      .hero { padding: 55px 0; }
-      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
-      .categories, .packs { grid-template-columns: 1fr; }
-      .benefits { grid-template-columns: repeat(2, 1fr); }
-      .trust { grid-template-columns: 1fr; }
-      .navlinks { gap: 12px; font-size: 12px; }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 30px, 520px); }
+      nav { align-items: flex-start; flex-direction: column; gap: 10px; padding: 12px 0 14px; }
       .logo { font-size: 21px; }
+      .navlinks { width: 100%; gap: 8px 15px; font-size: 11px; }
+      .hero { padding: 53px 0 42px; }
+      h1 { font-size: clamp(37px, 11vw, 53px); letter-spacing: -1.8px; }
+      .intro { font-size: 14px; }
+      .actions { display: grid; grid-template-columns: 1fr; }
+      .btn { width: 100%; min-height: 46px; }
+      .trust { grid-template-columns: 1fr; }
+      .trust div { font-size: 12px; }
+      section.content-section { padding: 49px 0; }
+      .categories, .packs { grid-template-columns: 1fr; gap: 13px; }
+      .card { padding: 21px; }
+      .benefits { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .benefit { padding: 15px; }
+      .benefit strong { font-size: 12px; }
+      .benefit span { font-size: 11px; }
+      .video-publicitario { padding: 22px 15px; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .contact-box { padding: 25px 15px; }
+      .mini-stat strong { font-size: 15px; }
+      .whatsapp-float { right: 12px; bottom: 12px; padding: 12px 15px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+      #wave-canvas { display: none; }
     }
   </style>
 </head>
-
 <body>
-  <!-- CONFIGURACIÓN: reemplazá el número de WhatsApp al final del archivo -->
+  <canvas id="wave-canvas" aria-hidden="true"></canvas>
+  <div class="floating-symbols" aria-hidden="true">
+    <span class="symbol">△</span><span class="symbol">○</span><span class="symbol">×</span>
+    <span class="symbol">□</span><span class="symbol">×</span><span class="symbol">△</span>
+  </div>
 
   <header>
     <div class="container">
-      <nav>
+      <nav aria-label="Navegación principal">
         <a class="logo" href="#inicio">MASTER<span>OFICIAL</span></a>
         <div class="navlinks">
-          <a href="#inicio">Inicio</a>
-          <a href="#catalogo">Catálogo</a>
-          <a href="#packs">Packs</a>
-          <a href="#faq">Preguntas frecuentes</a>
-          <a href="#contacto">Contacto</a>
+          <a href="#inicio">Inicio</a><a href="#catalogo">Catálogo</a><a href="#packs">Packs</a>
+          <a href="#faq">Preguntas frecuentes</a><a href="#contacto">Contacto</a>
         </div>
       </nav>
     </div>
@@ -380,344 +229,202 @@
   <main>
     <section class="hero" id="inicio">
       <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">Cumplimos 5 años y el regalo es para vos !</span>
-          <h1>Proximamente<br><span>Sorteamos una PlayStation 4 !</span></h1>
-          <p class="intro">
-            Con tu compra en el Pack Full de PlayStation 3 ! Ya estas participando .
-            Fecha del sorteo a confirmar , agendanos al wpp y podras ver nuestros estados con novedades.
-          </p>
+        <div class="reveal">
+          <span class="eyebrow">5 AÑOS DE EXPERIENCIA · SORTEO ESPECIAL</span>
+          <h1>Tu próxima experiencia <span>empieza acá.</span></h1>
+          <p class="intro">Celebramos nuestros 5 años con una sorpresa para la comunidad: próximamente sortearemos una PlayStation 4. Con la compra del Pack Full de PlayStation 3 participás según las condiciones de la promoción. Consultanos por WhatsApp para conocer las novedades y la fecha del sorteo.</p>
           <div class="actions">
-            <a class="btn wa-link" href="#contacto">Consultar por WhatsApp ↗️</a>
-            <a class="btn secondary" href="#packs">Ver los packs</a>
+            <a class="btn wa-link" href="#contacto" data-message="Hola, llegué desde la web de MasterOficial y quiero conocer los packs y las novedades del sorteo.">Consultar por WhatsApp <span>↗</span></a>
+            <a class="btn secondary" href="#packs">Explorar los packs ↓</a>
           </div>
           <div class="trust">
-            <div><strong>Atención personalizada</strong>Te guiamos en todo el proceso de instalacion</div>
-            <div><strong>100% Confiable</strong>Miles de clientes de todo el pais y varios paises ya nos elijen</div>
-            <div><strong>Experiencia , Compromiso y Calidad</strong>Mas de 5 años de Trayectoria</div>
+            <div><strong>Atención personalizada</strong>Te guiamos durante el proceso de instalación.</div>
+            <div><strong>Atención regional</strong>Consultas desde Argentina y otros países de Latinoamérica.</div>
+            <div><strong>Experiencia y compromiso</strong>Más de 5 años acompañando a nuestra comunidad gamer.</div>
           </div>
         </div>
+        <aside class="hero-card reveal">
+          <div class="console-art"><div class="console-ring"></div><div class="controller" aria-hidden="true">🎮</div></div>
+          <h2>MASTER<span class="gradient-text">GAMING</span></h2>
+          <p>Catálogo digital · Packs · Soporte técnico</p>
+          <div class="mini-stats">
+            <div class="mini-stat"><strong>03</strong><span>PACKS</span></div>
+            <div class="mini-stat"><strong>05+</strong><span>AÑOS</span></div>
+            <div class="mini-stat"><strong>24/7</strong><span>WEB ONLINE</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-                <!-- VIDEO PUBLICITARIO MASTEROFFICIAL -->
-<section class="video-publicitario">
-  <div class="video-contenido">
-    <span class="video-etiqueta">MASTEROFFICIAL</span>
-
-    <h2>Licencias Originales 🎮.</h2>
-
-    <p>Descubrí todo lo que tenemos para tu PlayStation 3.</p>
-
-    <video controls playsinline preload="metadata">
-      <source src="./Playstation%203.mp4" type="video/mp4">
-      Tu navegador no puede reproducir este video.
-    </video>
-
-   <a class="btn wa-link video-whatsapp"
-       href="#contacto"
-       data-message="Hola, llegué desde el video de MasterOficial y quiero información sobre el flasheo de PS3.">
-      CONSULTAR FLASHEO PS3 POR WHATSAPP
-    </a>
-  </div>
-</section>
-
-<style>
-.video-publicitario {
-  background: #080d18;
-  color: #ffffff;
-  padding: 35px 18px;
-  margin: 25px 0;
-  border: 1px solid #1677ff;
-  border-radius: 18px;
-  text-align: center;
-}
-
-.video-contenido {
-  max-width: 750px;
-  margin: auto;
-}
-
-.video-etiqueta {
-  color: #1685ff;
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 3px;
-}
-
-.video-publicitario h2 {
-  font-size: clamp(24px, 5vw, 36px);
-  margin: 14px 0;
-}
-
-.video-publicitario p {
-  color: #b9c7da;
-  margin-bottom: 22px;
-}
-
-.video-publicitario video {
-  display: block;
-  width: 100%;
-  max-height: 480px;
-  background: #000;
-  border-radius: 12px;
-  border: 1px solid #263b5c;
-}
-
-.video-whatsapp {
-  display: inline-block;
-  margin-top: 22px;
-  padding: 14px 22px;
-  background: #1677ff;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 9px;
-}
-
-.video-whatsapp:hover {
-  background: #005fe0;
-}
-</style>
-    
-    <section id="catalogo">
+    <section class="content-section" id="video">
       <div class="container">
-        <div class="section-head">
-          <h2>PRODUCTOS DISPONIBLES</h2>
-          <p>Elegí una categoría y consultanos.</p>
+        <div class="video-publicitario reveal">
+          <span class="video-etiqueta">MASTEROFFICIAL · VIDEO OFICIAL</span>
+          <h2>Conocé nuestra propuesta <span class="gradient-text">gamer.</span></h2>
+          <p>Descubrí todo lo que tenemos para tu PlayStation 3.</p>
+          <video controls playsinline preload="metadata" poster="">
+            <source src="./Playstation%203.mp4" type="video/mp4">
+            Tu navegador no puede reproducir este video.
+          </video>
+          <a class="btn wa-link video-whatsapp" href="#contacto" data-message="Hola, llegué desde el video de MasterOficial y quiero información sobre el flasheo de PS3.">Consultar flasheo PS3 por WhatsApp ↗</a>
         </div>
+      </div>
+    </section>
 
+    <section class="content-section" id="catalogo">
+      <div class="container">
+        <div class="section-head reveal"><span class="section-kicker">Explorá nuestros servicios</span><h2>Productos <span class="gradient-text">disponibles</span></h2><p>Elegí una categoría y nuestro equipo te ayuda con los detalles.</p></div>
         <div class="categories">
-          <article class="card">
-            <div class="category-icon">🎮</div>
-            <h3>Flasheo Playstation 3</h3>
-            <p>Diferentes packs de juegos para tu consola (flasheo) pago unico.</p>
-            <a class="btn secondary wa-link" href="#contacto"
-              data-message="Hola, quiero consultar por el flasheo en Playstation 3.">
-              Consultar con Atencion al Cliente
-            </a>
-          </article>
-
-          <article class="card">
-            <div class="category-icon">🕹️</div>
-            <h3>Juegos y Flasheo para Playstation 4</h3>
-            <p>Disfruta de un unico pack de juegos para tu consola (consulta requisitos).</p>
-            <a class="btn secondary wa-link" href="#contacto"
-              data-message="Hola, quiero consultar por Flasheo Playstation 4.">
-              Consultar con Atencion al Cliente
-            </a>
-          </article>
-
-          <article class="card">
-            <div class="category-icon">💎</div>
-            <h3>Soporte Tecnico</h3>
-            <p>Tenes alguna duda/consulta con el producto que adquiriste , nos podes preguntar desde aqui.</p>
-            <a class="btn secondary wa-link" href="#contacto"
-              data-message="Hola, quiero que se comuniquen conmigo.">
-              Consultar con Soporte Tecnico
-            </a>
-          </article>
+          <article class="card reveal"><div class="category-icon">🎮</div><h3>Flasheo PlayStation 3</h3><p>Distintos packs de juegos para tu consola. Pago por única vez; consultá el contenido y los requisitos antes de comprar.</p><a class="btn secondary wa-link" href="#contacto" data-message="Hola, quiero consultar por el flasheo de PlayStation 3.">Consultar con atención al cliente ↗</a></article>
+          <article class="card reveal"><div class="category-icon">🕹️</div><h3>Juegos y flasheo para PS4</h3><p>Consultá por las opciones disponibles y los requisitos de compatibilidad de tu consola.</p><a class="btn secondary wa-link" href="#contacto" data-message="Hola, quiero consultar por juegos y flasheo para PlayStation 4.">Consultar con atención al cliente ↗</a></article>
+          <article class="card reveal"><div class="category-icon">🛠️</div><h3>Soporte técnico</h3><p>¿Tenés una duda sobre un producto adquirido? Nuestro equipo puede orientarte con los siguientes pasos.</p><a class="btn secondary wa-link" href="#contacto" data-message="Hola, necesito ayuda del equipo de soporte técnico de MasterOficial.">Consultar con soporte técnico ↗</a></article>
         </div>
       </div>
     </section>
 
-    <section id="packs">
+    <section class="content-section" id="packs">
       <div class="container">
-        <div class="section-head">
-          <h2>Packs disponibles para tu Consola Playstation 3</h2>
-          <p>Flasheo con ultima actualizacion y HEN oficial incluidos en cualquier pack.</p>
-        </div>
-
+        <div class="section-head reveal"><span class="section-kicker">Elegí tu experiencia</span><h2>Packs para tu <span class="gradient-text">PlayStation 3</span></h2><p>Consultá el contenido detallado y la compatibilidad con tu consola antes de realizar tu compra.</p></div>
         <div class="packs">
-  <article class="card">
-    <span class="tag">PACK 01</span>
-    <h3>Pack Retro</h3>
-    <p>Juegos clásicos de Sega, Nintendo, Family, Arcade y más. Consultá el contenido completo.</p>
-    <div class="price">$17.000
-      <small>PAGO POR UNICA VEZ</small>
-    </div>
-    <a class="btn secondary wa-link" href="#contacto"
-      data-message="Hola, quiero conocer el contenido y precio del Pack Retro.">
-      Ver detalles
-    </a>
-  </article>
-
-  <article class="card">
-    <span class="tag">PACK 02</span>
-    <h3>Pack PS3</h3>
-    <p>Catálogo Completo de PlayStation 3. Consultá el contenido y la compatibilidad.</p>
-    <div class="price">$22.000
-      <small>PAGO POR UNICA VEZ</small>
-    </div>
-    <a class="btn secondary wa-link" href="#contacto"
-      data-message="Hola, quiero conocer el contenido y precio del Pack PS3.">
-      Ver detalles
-    </a>
-  </article>
-
-  <article class="card">
-    <span class="tag">PACK 03 · MÁS VENDIDO</span>
-    <h3>Pack Full</h3>
-    <p>Incluye catalogo completo de PS3 , PS2 , PS1 y Retros (Mas Futbol actualizado)</p>
-    <div class="price">$27.000
-      <small>PAGO POR UNICA VEZ</small>
-    </div>
-    <a class="btn wa-link" href="#contacto"
-      data-message="Hola, quiero conocer el contenido y precio del Pack Full, el más vendido.">
-      Ver detalles
-    </a>
-  </article>
-</div>
-
-          
+          <article class="card reveal"><span class="tag">PACK 01 · CLÁSICOS</span><div class="category-icon" style="margin-top:14px">👾</div><h3>Pack Retro</h3><p>Juegos clásicos de Sega, Nintendo, Family, Arcade y más. Consultá el catálogo completo.</p><div class="price">$17.000<small>PAGO POR ÚNICA VEZ</small></div><a class="btn secondary wa-link" href="#contacto" data-message="Hola, quiero conocer el contenido y el precio del Pack Retro de MasterOficial.">Ver detalles ↗</a></article>
+          <article class="card reveal"><span class="tag">PACK 02 · PLAYSTATION</span><div class="category-icon" style="margin-top:14px">🎮</div><h3>Pack PS3</h3><p>Catálogo de juegos de PlayStation 3. Consultá el contenido disponible y la compatibilidad.</p><div class="price">$22.000<small>PAGO POR ÚNICA VEZ</small></div><a class="btn secondary wa-link" href="#contacto" data-message="Hola, quiero conocer el contenido y el precio del Pack PS3 de MasterOficial.">Ver detalles ↗</a></article>
+          <article class="card featured reveal"><span class="tag">PACK 03 · MÁS VENDIDO</span><div class="category-icon" style="margin-top:14px">⚡</div><h3>Pack Full</h3><p>Una opción ampliada con catálogo de PS3, PS2, PS1 y juegos retro, además de fútbol actualizado según disponibilidad.</p><div class="price">$27.000<small>PAGO POR ÚNICA VEZ</small></div><div class="pack-note">✦ Nuestra opción más completa</div><a class="btn wa-link" href="#contacto" data-message="Hola, quiero conocer el contenido y el precio del Pack Full de MasterOficial, el más completo.">Consultar Pack Full ↗</a></article>
         </div>
       </div>
     </section>
 
-    <section id="ventajas">
+    <section class="content-section" id="ventajas">
       <div class="container">
-        <div class="section-head">
-          <h2>¿Por qué elegirnos?</h2>
-          <p>Información clara y atención durante todo el proceso.</p>
-        </div>
+        <div class="section-head reveal"><span class="section-kicker">La experiencia MasterOficial</span><h2>¿Por qué <span class="gradient-text">elegirnos?</span></h2><p>Información clara y acompañamiento durante todo el proceso.</p></div>
         <div class="benefits">
-          <div class="benefit"><strong>Atención a nuestros clientes</strong><span>Asesoramiento antes y despues de la instalacion.</span></div>
-          <div class="benefit"><strong>Compra con confianza</strong><span>Todo detallado antes de comprar , somos 5 Tecnicos en Linea en nuestros horarios de atencion.</span></div>
-          <div class="benefit"><strong>Packs a medida</strong><span>Consultanos antes de elegir.</span></div>
-          <div class="benefit"><strong>Servicio 100% online a varios Paises</strong><span>Ofrecemos Servicio en Argentina , Mexico , Uruguay y Peru.</span></div>
+          <div class="benefit reveal"><span class="benefit-icon">💬</span><strong>Atención personalizada</strong><span>Asesoramiento antes y después de la instalación.</span></div>
+          <div class="benefit reveal"><span class="benefit-icon">🛡️</span><strong>Compra informada</strong><span>Te explicamos los detalles y requisitos antes de comprar.</span></div>
+          <div class="benefit reveal"><span class="benefit-icon">🎯</span><strong>Opciones para vos</strong><span>Consultanos para elegir el pack adecuado a tus necesidades.</span></div>
+          <div class="benefit reveal"><span class="benefit-icon">🌎</span><strong>Atención regional</strong><span>Consultas para Argentina, México, Uruguay y Perú.</span></div>
         </div>
       </div>
     </section>
 
-    <section id="faq">
+    <section class="content-section" id="faq">
       <div class="container">
-        <div class="section-head">
-          <h2>Preguntas frecuentes</h2>
-          <p>Resolvemos las dudas más comunes.</p>
-        </div>
-
-        <div class="faq-list">
-          <details>
-            <summary>¿Que es el Flasheo en mi consola Playstation 3 ?</summary>
-            <p>Actualizamos la consola a la ultima version disponible e instalamos una aplicacion que te permite descargar e instalar juegos sin limite desde tu consola.</p>
-          </details>
-          <details>
-            <summary>¿Qué incluye cada pack?</summary>
-            <p>El contenido depende de cada pack. Solicitá el detalle completo antes de realizar tu compra.</p>
-          </details>
-          <details>
-            <summary>¿Cómo sé si es compatible con mi equipo?</summary>
-            <p>El flasheo se puede hacer en cualquier version de Playstation 3 , si tiene Hen o no , si esta actualizada o no lo esta , no hay problemas , se puede hacer igual.</p>
-          </details>
-          <details>
-            <summary>¿La instalacion es en Linea?</summary>
-            <p>Si ! Te guiamos en todo el proceso de instalacion , sin necesidad de llevar la consola a ningun lugar , instalacion rapida y sencilla , nuestros tecnicos estan disponibles para videollamada.</p>
-          </details>
-          <details>
-            <summary>¿Que necesito para la instalacion?</summary>
-            <p>Lo hacemos todo directamente desde tu consola , no pedimos contraseñas ni codigos ni nada rado. Consultanos el procedimiento y los plazos antes de pagar.</p>
-          </details>
-          <details>
-            <summary>¿Puedo hacer otras preguntas antes de comprar?</summary>
-            <p>Sí. Podés escribirnos para resolver tus dudas antes de tomar una decisión.</p>
-          </details>
+        <div class="section-head reveal"><span class="section-kicker">Te ayudamos a decidir</span><h2>Preguntas <span class="gradient-text">frecuentes</span></h2><p>Información inicial para resolver las dudas más comunes.</p></div>
+        <div class="faq-list reveal">
+          <details><summary>¿Qué es el flasheo en una PlayStation 3?</summary><p>Es un procedimiento de modificación de software que puede habilitar funciones adicionales en consolas compatibles. Las opciones y limitaciones dependen del modelo y de la versión del sistema.</p></details>
+          <details><summary>¿Qué incluye cada pack?</summary><p>El contenido varía según el pack. Escribinos y te compartiremos los detalles disponibles antes de que tomes una decisión.</p></details>
+          <details><summary>¿Cómo sé si mi consola es compatible?</summary><p>La compatibilidad depende del modelo y de la versión del sistema instalada. Consultanos esos datos antes de comprar para que el equipo pueda orientarte.</p></details>
+          <details><summary>¿La instalación es online?</summary><p>La atención se realiza online y el equipo te orienta durante el proceso. Consultá los pasos, los requisitos y la disponibilidad de asistencia antes de comenzar.</p></details>
+          <details><summary>¿Qué necesito para la instalación?</summary><p>Los requisitos pueden variar según la consola y el servicio. Consultanos el procedimiento y los plazos. No compartas contraseñas ni códigos de verificación por chat.</p></details>
+          <details><summary>¿Puedo preguntar antes de comprar?</summary><p>¡Sí! Podés escribirnos para resolver tus dudas y conocer los detalles antes de tomar una decisión.</p></details>
         </div>
       </div>
     </section>
 
-    <section id="contacto">
-  <div class="container">
-    <div class="contact-box">
-      <span class="eyebrow">CONTACTO DIRECTO</span>
-      <h2>🎮 Equipo Técnico MasterTeam</h2>
-      <p class="contact-intro">
-        Estamos para ayudarte. Nuestro equipo brinda atención personalizada y soporte técnico en distintos países de Latinoamérica.
-      </p>
-      <div class="team-grid">
-        <div class="team-card">
-          <span class="team-flag">🇦🇷</span>
-          <h3>Santiago</h3>
-          <p>Atención al cliente</p>
-          <span class="team-countries">🌎 Argentina · Uruguay · México</span>
-        </div>
-        <div class="team-card">
-          <span class="team-flag">🇦🇷</span>
-          <h3>Georgina</h3>
-          <p>Atención al cliente</p>
-          <span class="team-countries">🌎 Argentina · Perú · México</span>
-        </div>
-        <div class="team-card">
-          <span class="team-flag">🇦🇷</span>
-          <h3>Cristian</h3>
-          <p>Atención al cliente</p>
-          <span class="team-countries">🌎 Argentina · Uruguay · México</span>
-        </div>
-        <div class="team-card">
-          <span class="team-flag">🇦🇷</span>
-          <h3>Thiago</h3>
-          <p>Soporte técnico</p>
-          <span class="team-countries">🌎 Argentina · Uruguay · México</span>
-        </div>
-        <div class="team-card">
-          <span class="team-flag">🇺🇾</span>
-          <h3>Maximiliano</h3>
-          <p>Soporte técnico</p>
-          <span class="team-countries">🌎 Uruguay · Perú</span>
-        </div>
-        <div class="team-card">
-          <span class="team-flag">🇵🇪</span>
-          <h3>Anderson</h3>
-          <p>Soporte técnico</p>
-          <span class="team-countries">🌎 Perú · México</span>
+    <section class="content-section" id="contacto">
+      <div class="container">
+        <div class="contact-box reveal">
+          <span class="eyebrow">CONTACTO DIRECTO</span>
+          <h2>Equipo Técnico <span class="gradient-text">MasterTeam</span></h2>
+          <p>Estamos para ayudarte. Nuestro equipo brinda atención personalizada y soporte técnico a clientes de distintos países de Latinoamérica.</p>
+          <div class="team-grid">
+            <div class="team-card"><span class="team-flag">🇦🇷</span><h3>Santiago</h3><p>Atención al cliente</p><span class="team-countries">🌎 Argentina · Uruguay · México</span></div>
+            <div class="team-card"><span class="team-flag">🇦🇷</span><h3>Georgina</h3><p>Atención al cliente</p><span class="team-countries">🌎 Argentina · Perú · México</span></div>
+            <div class="team-card"><span class="team-flag">🇦🇷</span><h3>Cristian</h3><p>Atención al cliente</p><span class="team-countries">🌎 Argentina · Uruguay · México</span></div>
+            <div class="team-card"><span class="team-flag">🇦🇷</span><h3>Thiago</h3><p>Soporte técnico</p><span class="team-countries">🌎 Argentina · Uruguay · México</span></div>
+            <div class="team-card"><span class="team-flag">🇺🇾</span><h3>Maximiliano</h3><p>Soporte técnico</p><span class="team-countries">🌎 Uruguay · Perú</span></div>
+            <div class="team-card"><span class="team-flag">🇵🇪</span><h3>Anderson</h3><p>Soporte técnico</p><span class="team-countries">🌎 Perú · México</span></div>
+          </div>
+          <a class="btn wa-link" href="#contacto" data-message="Hola, llegué desde la web de MasterOficial y quiero comunicarme con el equipo técnico.">☎ Consultar por WhatsApp ↗</a>
+          <p style="font-size:11px;margin:16px auto 0">En breve, un integrante del equipo te responderá.</p>
         </div>
       </div>
-      <a class="btn wa-link"
-         href="#contacto"
-         data-message="Hola, llegué desde la web de MasterOficial y quiero comunicarme con el equipo técnico.">
-        ☎️ Consultar por WhatsApp
-      </a>
-    </div>
-  </div>
-</section>
+    </section>
   </main>
 
   <footer>
     <div class="container">
       <a class="logo" href="#inicio">MASTER<span>OFICIAL</span></a>
-      <p>Catálogo digital · Productos · Packs</p>
+      <p>Catálogo digital · Packs · Atención personalizada</p>
       <p>© <span id="year"></span> MasterOficial. Todos los derechos reservados.</p>
     </div>
   </footer>
 
-  <a class="whatsapp-float wa-link" href="#contacto"
-     aria-label="Consultar por WhatsApp">WhatsApp ↗️</a>
+  <a class="whatsapp-float wa-link" href="#contacto" data-message="Hola, llegué desde la web de MasterOficial y quiero recibir información sobre los packs disponibles." aria-label="Consultar por WhatsApp">WhatsApp ↗</a>
 
   <script>
-    // REEMPLAZÁ este valor por tu número con código de país,
-    // sin el signo +, espacios ni guiones.
-    // Ejemplo de formato argentino: 54911XXXXXXXX
+    // Número de WhatsApp con código de país, sin +, espacios ni guiones.
     const WHATSAPP_NUMBER = "5491176436372";
 
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
     document.querySelectorAll(".wa-link").forEach(function(link) {
       link.addEventListener("click", function(event) {
         event.preventDefault();
-
         if (!/^\d{10,15}$/.test(WHATSAPP_NUMBER)) {
-          alert("La página está casi lista. Falta configurar el número de WhatsApp.");
-          document.getElementById("contacto").scrollIntoView();
+          alert("Falta configurar el número de WhatsApp.");
           return;
         }
-
         const message = link.dataset.message ||
-          "Hola, llegué desde la web de MasterOficial y quiero conocer los packs disponibles.";
-
-        const url = "https://wa.me/" + WHATSAPP_NUMBER +
-          "?text=" + encodeURIComponent(message);
-
+          "Hola, llegué desde la web de MasterOficial y quiero recibir información sobre los packs disponibles.";
+        const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
         window.open(url, "_blank", "noopener,noreferrer");
       });
     });
+
+    // Animaciones de aparición al desplazarse, con alternativa si no está disponible.
+    const revealItems = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(function(item) { observer.observe(item); });
+    } else {
+      revealItems.forEach(function(item) { item.classList.add("visible"); });
+    }
+
+    // Fondo Wave animado: canvas ligero, sin imágenes externas.
+    (function() {
+      const canvas = document.getElementById("wave-canvas");
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+      let width = 0, height = 0, dpr = 1, tick = 0, frame = 0;
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        canvas.style.width = width + "px";
+        canvas.style.height = height + "px";
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+        const spacing = width < 600 ? 34 : 27;
+        for (let layer = 0; layer < 3; layer++) {
+          ctx.beginPath();
+          const baseY = height * (0.38 + layer * 0.19);
+          for (let x = -10; x <= width + 10; x += spacing) {
+            const y = baseY
+              + Math.sin(x * 0.008 + tick * (0.65 + layer * 0.13) + layer) * (14 + layer * 5)
+              + Math.sin(x * 0.016 - tick * 0.42 + layer * 2) * 7;
+            if (x === -10) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+          }
+          ctx.strokeStyle = layer === 0 ? "rgba(22,140,255,0.17)" : layer === 1 ? "rgba(54,213,255,0.12)" : "rgba(22,100,255,0.10)";
+          ctx.lineWidth = layer === 0 ? 1.4 : 1;
+          ctx.stroke();
+        }
+        tick += 0.008;
+        frame = requestAnimationFrame(draw);
+      }
+      resize();
+      window.addEventListener("resize", resize, { passive: true });
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) draw();
+    })();
   </script>
 </body>
 </html>
